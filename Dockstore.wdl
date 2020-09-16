@@ -37,8 +37,8 @@ workflow generate_igv_screenshots {
 
 		File ref_fasta
 		File ref_fasta_index
+		File ref_fasta_dict
 
-		String output_name
 	}
 
 	call generate_mini_crams {
