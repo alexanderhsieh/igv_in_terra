@@ -52,7 +52,8 @@ workflow generate_igv_screenshots {
 			#fa_cram_index = fa_cram_index,
 			#mo_cram_index = mo_cram_index,
 			ref_fasta = ref_fasta,
-			ref_fasta_index = ref_fasta_index
+			ref_fasta_index = ref_fasta_index,
+			ref_fasta_dict = ref_fasta_dict
 	}
 
 	call run_igv {
@@ -100,6 +101,7 @@ task generate_mini_crams {
 
 		File ref_fasta
 		File ref_fasta_index
+		File ref_fasta_dict
 
 		Int disk_size = 50
 
