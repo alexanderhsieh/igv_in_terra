@@ -10,7 +10,8 @@ parser = OptionParser()
 parser.add_option('-s', '--sid', dest='sample_id', help='sample id')
 parser.add_option('-v', '--vid', dest='var_id', help='variant id in chr:pos:ref:alt format')
 parser.add_option('-r', '--ref', dest='ref_fasta', help='reference fasta path')
-parser.add_option('-b', '--bam', dest='bamf', help='newline-separated list of mini-bam files')
+#parser.add_option('-b', '--bam', dest='bamf', help='newline-separated list of mini-bam files')
+parser.add_option('-b', '--bams', dest='bams', help='comma-separated string of mini-bam files')
 parser.add_option('-o', '--out', dest='outf', help='output filename')
 parser.add_option('-z', '--screen', dest='outscreenname', help='output screenshot filename prefix')
 
@@ -33,10 +34,16 @@ outfile.write('#!/bin/bash' + '\n')
 outfile.write('genome %s'%(options.ref_fasta) + '\n')
 
 ## load each minibam in bam list
+'''
 with open(options.bamf, 'r') as bamlist:
 	for line in bamlist:
 		tmp = line.strip()
 		outfile.write('load %s'%(tmp) + '\n')
+'''
+bamlist = options.bams.split(',')
+for b in bamlist:
+	outfile.write('load %s'%(b) + '\n')
+
 
 ## set output snapshot directory
 outfile.write('snapshotDirectory ./' + '\n')

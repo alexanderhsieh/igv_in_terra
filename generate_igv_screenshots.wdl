@@ -48,9 +48,6 @@ workflow generate_igv_screenshots {
 			pb_cram = pb_cram,
 			fa_cram = fa_cram,
 			mo_cram = mo_cram,
-			#pb_cram_index = pb_cram_index,
-			#fa_cram_index = fa_cram_index,
-			#mo_cram_index = mo_cram_index,
 			ref_fasta = ref_fasta,
 			ref_fasta_index = ref_fasta_index,
 			ref_fasta_dict = ref_fasta_dict
@@ -63,8 +60,12 @@ workflow generate_igv_screenshots {
 			ref_fasta = ref_fasta,
 			ref_fasta_index = ref_fasta_index,
 			script = batch_script,
-			minibam_array = generate_mini_crams.outbam_array,
-			minibamindex_array = generate_mini_crams.outbamindex_array,
+			pb_bam = generate_mini_crams.mini_pb_bam,
+			fa_bam = generate_mini_crams.mini_fa_bam,
+			mo_bam = generate_mini_crams.mini_mo_bam,
+			pb_bam_index = generate_mini_crams.mini_pb_bam_index,
+			fa_bam_index = generate_mini_crams.mini_fa_bam_index,
+			mo_bam_index = generate_mini_crams.mini_mo_bam_index
 
 			
 	}
@@ -130,8 +131,13 @@ task generate_mini_crams {
 	}
 
 	output{
-		Array[File] outbam_array = glob('*.bam')
-		Array[File] outbamindex_array = glob('*.bai')
+		File mini_pb_bam = "pb_wes.bam"
+		File mini_fa_bam = "fa.bam"
+		File mini_mo_bam = "mo.bam"
+		File mini_pb_bam_index = "pb_wes.bai"
+		File mini_fa_bam_index = "fa.bai"
+		File mini_mo_bam_index = "mo.bai"
+
 	}
 
 }
@@ -147,8 +153,12 @@ task run_igv {
 
 		File script
 
-		Array[File] minibam_array
-		Array[File] minibamindex_array
+		File pb_bam
+		File fa_bam 
+		File mo_bam 
+		File pb_bam_index 
+		File fa_bam_index 
+		File mo_bam_index 
 
 		Int disk_size = 100
 	}
@@ -160,7 +170,7 @@ task run_igv {
 		echo ~{outfname}
 
 		## generate IGV batch file + prints out screenshot filename and stores in bash variable $SCREENSHOT
-		python ~{script} -s ~{sample_id} -v ~{var_id} -r ~{ref_fasta} -b ~{write_lines(minibam_array)} -o batch.txt -z ~{outfname}
+		python ~{script} -s ~{sample_id} -v ~{var_id} -r ~{ref_fasta} -b ~{pb_bam},~{fa_bam},~{mo_bam} -o batch.txt -z ~{outfname}
 		
 
 		## RUN IGV IN BATCH MODE
