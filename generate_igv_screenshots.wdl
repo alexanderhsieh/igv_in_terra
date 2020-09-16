@@ -26,9 +26,9 @@ workflow generate_igv_screenshots {
 		String fa_cram
 		String mo_cram
 
-		File pb_cram_index
-		File fa_cram_index
-		File mo_cram_index
+		#File pb_cram_index
+		#File fa_cram_index
+		#File mo_cram_index
 
 		String region # chr*:*-*
 		String var_id # chr:pos:ref:alt
