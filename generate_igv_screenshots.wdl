@@ -69,6 +69,7 @@ workflow generate_igv_screenshots {
 	}
 
 	output {
+		File batchfile = run_igv.batchfile
 		File output_screenshot = run_igv.screenshot
 	}
 
@@ -151,7 +152,7 @@ task run_igv {
 	}
 	String rawprefix = "~{sample_id}.chr~{var_id}"
 	String outprefix = sub("~{rawprefix}", ":", "_")
-	String outfname = "~{outprefix}.png"
+	String outfname = "~{outprefix}.png" # should be sampleid.chr*_pos_ref_alt.png
 
 	command { 
 		echo ~{outfname}
