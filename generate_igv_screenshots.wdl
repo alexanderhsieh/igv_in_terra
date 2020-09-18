@@ -106,7 +106,7 @@ task generate_mini_crams {
 
 		Int disk_size = 50
 
-		String project_id = "sfari9100-215419" # test if this google project ID works
+		String project_id  # test if this google project ID works
 
 	}
 
