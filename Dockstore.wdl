@@ -68,7 +68,7 @@ workflow generate_igv_screenshots {
 
 	output {
 		File batchfile = run_igv.batchfile
-		File output_screenshots = run_igv.screenshot
+		File output_screenshots = run_igv.screenshots
 	}
 
 }
