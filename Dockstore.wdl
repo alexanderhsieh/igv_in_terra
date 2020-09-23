@@ -174,7 +174,8 @@ task run_igv {
 	}
 
 	runtime {
-		docker: "talkowski/igv_gatk:latest"
+		#docker: "talkowski/igv_gatk:latest"
+		docker: "talkowski/igv_gatk"
 		memory: "10G"
 		disks: "local-disk " + disk_size + " HDD"
 		preemptible: 3
