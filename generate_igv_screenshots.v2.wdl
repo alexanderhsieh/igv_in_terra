@@ -107,9 +107,9 @@ task generate_mini_crams {
 		echo ~{region} | tr , \\n > tmp.region.list
 
 		## how to set project for --gcs-project-for-requester-pays option??
-		gatk PrintReads -I ~{pb_cram} -L "tmp.region.list" -O "pb_wes.bam" -R ~{ref_fasta} --gcs-project-for-requester-pays ~{project_id}
-		gatk PrintReads -I ~{fa_cram} -L "tmp.region.list" -O "fa.bam" -R ~{ref_fasta} --gcs-project-for-requester-pays ~{project_id}
-		gatk PrintReads -I ~{mo_cram} -L "tmp.region.list" -O "mo.bam" -R ~{ref_fasta} --gcs-project-for-requester-pays ~{project_id}
+		gatk PrintReads -I ~{pb_cram} -L tmp.region.list -O "pb_wes.bam" -R ~{ref_fasta} --gcs-project-for-requester-pays ~{project_id}
+		gatk PrintReads -I ~{fa_cram} -L tmp.region.list -O "fa.bam" -R ~{ref_fasta} --gcs-project-for-requester-pays ~{project_id}
+		gatk PrintReads -I ~{mo_cram} -L tmp.region.list -O "mo.bam" -R ~{ref_fasta} --gcs-project-for-requester-pays ~{project_id}
 		#gatk PrintReads -I cram_array[3] -L ~{region} -O "pb_wgs.bam" -R ~{ref_fasta} --gcs-project-for-requester-pays ~{project_id}
 	>>>
 
