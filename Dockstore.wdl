@@ -114,7 +114,8 @@ task generate_mini_crams {
 	>>>
 
 	runtime {
-		docker: "broadinstitute/gatk:4.1.8.1"
+		#docker: "broadinstitute/gatk:4.1.8.1"
+		docker: "broadinstitute/gatk:latest"
 		memory: "8G"
 		disks: "local-disk " + disk_size + " HDD"
 		preemptible: 3
