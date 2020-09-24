@@ -122,6 +122,7 @@ task generate_mini_crams {
 	}
 
 	output{
+		File region_list = "tmp.region.list"
 		File mini_pb_bam = "pb_wes.bam"
 		File mini_fa_bam = "fa.bam"
 		File mini_mo_bam = "mo.bam"
